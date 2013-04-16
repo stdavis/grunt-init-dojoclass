@@ -5,7 +5,8 @@ define([
 function (
     declare
     ) {
-    "use strict";
+    // summary:
+    //      {%= description %}
     return declare('{%= declareName %}', null, {
         constructor: function () {
             console.log(this.declaredClass + "::constructor", arguments);

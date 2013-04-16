@@ -3,7 +3,8 @@ require([
 ],
 
 function (
-    {%= name %}) {
+    {%= name %}
+    ) {
     describe('{%= path %}/{%= name %}', function () {
         var testObject;
         beforeEach(function () {

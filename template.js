@@ -1,26 +1,47 @@
+'use strict';
+
 exports.description = "Create all files associated with a new dojo class (.js, spec.js)";
 exports.notes = "";
 
 exports.template = function(grunt, init, done) {
-  var _ = grunt.utils._;
+  var fs = require('fs');
+  var declareNameDefault = 'app/<ClassName>';
 
-  _.extend(grunt.helper("prompt_for_obj"), {
-    name: {
-      message: "ClassName"
+  init.process({}, [
+    {
+      name: 'name',
+      message: 'ClassName'
     },
-    path: {
-      message: "Path/To/ClassFolder (relative to current folder)"
+    {
+      name: 'description',
+      message: 'Widget Description'
     },
-    testspath: {
-      message: 'tests folder'
+    {
+      name: 'path',
+      message: "Path/To/WidgetFolder (relative to current folder)",
+      "default": 'app'
+    },
+    {
+      name: 'declareName',
+      message: "DojoDeclareName",
+      "default": declareNameDefault
+    },
+    {
+      name: 'testspath',
+      message: 'tests folder',
+      "default": 'app/tests'
     }
-  });
-
-  grunt.helper("prompt", {}, [
-    grunt.helper("prompt_for", "name"),
-    grunt.helper("prompt_for", "path", "app"),
-    grunt.helper('prompt_for', 'testspath', 'app/tests')
   ], function (err, props) {
+    // warn if overright
+    var path = 'src/' + props.path + '/' + props.name + '.js';
+    if (fs.existsSync(path)) {
+      grunt.warn('There is already a module located there!');
+    }
+
+    // apply declareName default
+    if (props.declareName === declareNameDefault) {
+      props.declareName = 'app/' + props.name;
+    }
     // Files to copy (and process).
     var files = init.filesToCopy(props);
 
