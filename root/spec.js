@@ -1,19 +1,18 @@
 require([
     '{%= path %}/{%= name %}'
-],
 
-function (
+], function(
     {%= name %}
-    ) {
-    describe('{%= path %}/{%= name %}', function () {
+) {
+    describe('{%= path %}/{%= name %}', function() {
         var testObject;
-        beforeEach(function () {
+        beforeEach(function() {
             testObject = new {%= name %}();
         });
-        afterEach(function () {
+        afterEach(function() {
             testObject = null;
         });
-        it('create a valid object', function () {
+        it('create a valid object', function() {
             expect(testObject).toEqual(jasmine.any({%= name %}));
         });
     });
