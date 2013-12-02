@@ -6,7 +6,7 @@ define([
 ) {
     // summary:
     //      {%= description %}
-    return declare('{%= declareName %}', null, {
+    return declare(null, {
         constructor: function() {
             console.log(this.declaredClass + '::constructor', arguments);
         }
