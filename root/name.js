@@ -4,11 +4,12 @@ define([
 ], function(
     declare
 ) {
+    'use strict';
     // summary:
     //      {%= description %}
     return declare(null, {
         constructor: function() {
-            console.log(this.declaredClass + '::constructor', arguments);
+            console.log('{%= path %}/{%= name %}:constructor', arguments);
         }
     });
 });
