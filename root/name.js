@@ -4,7 +4,6 @@ define([
 ], function(
     declare
 ) {
-    'use strict';
     // summary:
     //      {%= description %}
     return declare(null, {
